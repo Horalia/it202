@@ -1,0 +1,361 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="viewport" content="initial-scale=1.0">
+  <title> 311: Open Pothole Service Request for Community Areas in Chicago, IL</title>
+
+        <meta charset="utf-8">
+          <style>
+
+            #map{
+
+                height: 400px;
+
+                width : 600px;
+
+            }
+
+            
+
+            #floating-panel {
+
+            position: absolute;
+
+            top: 10px;
+
+            left: 60%;
+
+            z-index: 5;
+
+            background-color: #fff;
+
+            padding: 5px;
+
+            border: 1px solid #999;
+
+            text-align: center;
+
+            font-family: 'Roboto','sans-serif';
+
+            line-height: 30px;
+
+            padding-left: 0px;
+
+          }
+
+          #floating-panel {
+
+            background-color: #fff;
+
+            border: 1px solid #999;
+
+            left: 77%;
+
+            padding: 5px;
+
+            position: absolute;
+
+            top: 10px;
+
+            z-index: 5;
+
+          }
+
+
+
+
+        </style>
+</head>
+
+<body>
+  <div id="table_div" style = "width: 600px; height: 500px;"></div>
+  
+  <div class= "row">
+    <div class ="col-md-6">
+      <div id ="table_div"></div>
+          </div>
+    <div class = "col-md-6">
+
+      
+    </div>
+  </div>
+                      <div class = "col-md-6">
+
+                        <div class = "row">
+
+                            <div class = "col-md-12">
+
+                                <div id="piechart" style="width: 800px; height: 500px;">
+
+                            </div>
+
+                        </div>
+
+                        <div class = "row">
+
+                            <div class = "col-md-12">
+
+                                 <div id="floating-panel">
+
+                                  <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+
+                                  <button onclick="changeGradient()">Change gradient</button>
+
+                                  <button onclick="changeRadius()">Change radius</button>
+
+                                  <button onclick="changeOpacity()">Change opacity</button>
+
+                                </div>
+
+                                <div id = "map"></div>
+
+                                <h4 style = "text-align:center">Double click on <strong>"Toggle Heatmap"</strong></h3>
+
+                            </div>
+
+                        </div>
+
+                </div>
+
+                
+
+                    
+
+        </div> 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var dictionary = [];
+    var coordinates = [];
+    var url =  "https://data.cityofchicago.org/resource/787j-mys9.json";
+    url += '?' + $.param({
+      'status': "Open"});
+      
+    $(function() {
+      $.ajax({
+        url: url,
+        method: 'GET',
+        data: {
+          "$limit": 500000
+        }
+      })
+
+      .done(function(result) {
+        $.each(result, function(index, value) {
+          var key = value["community_area"];
+          if (!(key in dictionary)) {
+            dictionary[key] = 1;
+          }
+          
+          else {
+            dictionary[key] = dictionary[key] + 1;
+          }
+           if(value["latitude"] == undefined || value["longitude"] == undefined)
+
+        {
+
+            
+
+        }
+
+        else
+
+        {
+
+            coordinates.push(new google.maps.LatLng(value["latitude"],value["longitude"]));
+
+            console.log(value["latitude"]);
+
+            console.log(value["longitude"]);
+
+        }
+
+    });
+
+       
+        //console.log(dictionary)
+        console.log(coordinates);
+      });
+
+
+
+      google.charts.load('current', {
+        'packages': ['table', 'corechart']
+      });
+      google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'community area');
+        data.addColumn('number', 'Open');
+
+        for(var i = 0; i < 78; i++)
+        {
+          if(dictionary[i] == null)
+          {
+            
+          }
+          else
+          {
+            data.addRows([
+             [i.toString(), dictionary[i]]
+            ]);
+          }
+        
+      }
+          var options = {
+
+          title: '311: Potholes Reports Open for Community Areas in Chicago, IL'
+
+        };
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      
+
+        chart.draw(data, options);
+
+        table.draw(data, {
+          showRowNumber: false,
+          width: '100%',
+          height: '100%'
+        });
+      }
+    });
+  </script>
+  
+</script> 
+
+
+
+
+    <script>
+
+      var map, heatmap;
+
+      function initMap() {
+
+        map = new google.maps.Map(document.getElementById('map'), {
+
+          zoom: 10,
+
+          center: {lat: 41.871689, lng: -87.702416},
+
+          mapTypeId: 'satellite'
+
+        });
+
+
+
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+
+          data: getPoints(),
+
+          map: map
+
+        });
+
+      }
+
+      
+
+       function toggleHeatmap() {
+
+        heatmap.setMap(heatmap.getMap() ? null : map);
+
+      }
+
+
+
+
+      function changeGradient() {
+
+        var gradient = [
+
+          'rgba(0, 255, 255, 0)',
+
+          'rgba(0, 255, 255, 1)',
+
+          'rgba(0, 191, 255, 1)',
+
+          'rgba(0, 127, 255, 1)',
+
+          'rgba(0, 63, 255, 1)',
+
+          'rgba(0, 0, 255, 1)',
+
+          'rgba(0, 0, 223, 1)',
+
+          'rgba(0, 0, 191, 1)',
+
+          'rgba(0, 0, 159, 1)',
+
+          'rgba(0, 0, 127, 1)',
+
+          'rgba(63, 0, 91, 1)',
+
+          'rgba(127, 0, 63, 1)',
+
+          'rgba(191, 0, 31, 1)',
+
+          'rgba(255, 0, 0, 1)'
+
+        ]
+
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+
+      }
+
+
+
+
+      function changeRadius() {
+
+        heatmap.set('radius', heatmap.get('radius') ? null : 20);
+
+      }
+
+
+
+
+      function changeOpacity() {
+
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+
+      }
+
+
+
+
+      function getPoints() {
+
+        return coordinates;
+
+      }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwj71GpWEOmsToA4Ipr7DjSuHdK9OXAk&libraries=visualization&callback=initMap"
+
+    async defer></script>
+</body>
+
+</html>
