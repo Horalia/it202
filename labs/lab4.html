@@ -6,6 +6,7 @@
     </head>
     <body>
         <canvas id ="canvas1" width = "500" height = "300" style = "background-color: #001E62"  ></canvas>
+        <canvas id ="canvas2" width = "500" height = "300" style = "background-color: #986754"  ></canvas>
         <script>
            function draw()
            {
@@ -44,6 +45,68 @@
                     }
                });
             });
+            
+        </script>
+        <script>
+        var xCoord= 100;
+        var yCoord = 100;
+        var hitLeft = false;
+        var hitRight = false;
+        
+        
+        
+        
+            function partb(){
+                if(xCoord == 50){
+                    hitLeft = true;
+                    hitRight = false;
+                }
+                else if(xCoord == 450)
+                {
+                    hitLeft = false;
+                    hitRight = true;
+                }
+                
+                if(hitRight)
+                {
+                    xCoord = xCoord - 10;
+                }
+                else if(hitLeft)
+                {
+                    xCoord = xCoord + 5;
+                }
+                else
+                {
+                    xCoord = xCoord + 10;
+                }
+                var c = document.getElementById("canvas2");
+                var ctx = c.getContext("2d");
+                ctx.clearRect(0,0,c.width,c.height)
+                ctx.beginPath();
+                ctx.arc(xCoord,yCoord, 50, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fillStyle = "#D50732"
+                ctx.fill();
+                
+                requestAnimationFrame(partb);
+            }
+            
+            requestAnimationFrame(partb);
+            
+            $(function(){
+                $(document).keydown(function(e){
+                    console.log(e);
+                    if(event.which == 85)
+                    {
+                        draw();
+                    }
+                    else if(event.which == 88)
+                    {
+                        clear();
+                    }
+               });
+            });
+            
             
         </script>
     </body>
