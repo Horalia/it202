@@ -3,6 +3,21 @@
     <head>
         <title> </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <style>
+            html, body
+            {
+                height:100%;
+                width:100%;
+            }
+            
+            #canvas1
+            {
+                position:fixed;
+                width:100%;
+                height:100%;
+            }
+            
+        </style>
     </head>
     <body>
         <canvas id ="canvas1" style = "background-color: #001E62"  ></canvas>
@@ -258,25 +273,16 @@
             {
                 if(e.keyCode == 13)
                 {
-                    +                    alert("Piggy Diet will soon begin! To quit game once started click the escape button. To Pause please click 'control P'. The goal of the game is to live as long as possible. Red objets are harmful and will take away 10 points and a life. Green objects are healthy and will give you one life and 5 points. GOOD LUCK  feeding piggy health!");
+                    alert(" To quit game press 'esc'. The goal is to feed piggy the green boxes which in turn gives you one life and +5 points, collide with the red boxes and it hars piggy, -1 lives and -10 points.");
                     main();
                 }
             });
             
-            window.addEventListener('keypress', function(e) 
-            {
-                if(e.keyCode == 80 && e.ctrlKey )
-                {
-                    alert("Pause");
-                    document.location.reload();
-                    
-                }
-                                        
-            });
+           
 
             // 
                        
-            window.addEventListener('keypress', function(e) 
+            window.addEventListener('keydown', function(e) 
             {
                 if(e.keyCode == 27 )
                 {
@@ -287,11 +293,13 @@
                 }
                                         
             });
-            window.addEventListener('keypress', function(e) 
+            window.addEventListener('keydown', function(e) 
             {
                 if(e.keyCode == 84 && e.ctrlKey )
                 {
-                    
+                    gameOver = false;
+                    lives = 3;
+                    score = 0;
                     main();
                     
                 }
