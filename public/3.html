@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <canvas id ="canvas1" style = "background-color: #001E62"  ></canvas>
+        
+         
+        <script>
+
+        var scene = document.getElementById("canvas1");
+        var ctx = scene.getContext("2d");
+        scene.width = window.innerWidth;
+        scene.height = window.innerHeight;
+        var c = document.getElementById("canvas1");
+        var ctx = c.getContext("2d");
+        ctx.font = "bold 90px Georgia";
+        ctx.fillStyle = "yellow";
+        ctx.fillText("Welcome",scene.width/2 - scene.width/8 , scene.height/4);
+        ctx.textAlign = "center";
+        ctx.fillStyle = "orange";
+        ctx.fillText("Click ENTER to start game",scene.width/2, scene.height/2);
+        ctx.textAlign = "center";
+        
+        var lives = 3;
+        var score = 0;
+        var fps = 0;
+
+        function Player()
+        {
+            this.color = "blue";
+            this.x = 100;
+            this.y = 50;
+            this.height = 50;
+            this.width = 50;
+            
+        }
+        
+        function Harmer()
+        {
+            this.x = Math.floor((Math.random() * scene.width));
+            this.y = Math.floor((Math.random() * -200) - 100);
+            this.color = "red";
+            this.height = 100;
+            this.width = 100;
+        }
+        
+        Harmer.prototype.draw = function()
+        {
+            ctx.clearRect(this.x,this.y,this.width, this.height);
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x,this.y,this.width,this.height);
+            
+        };
+        
+        Harmer.prototype.update = function()
+        {
+            this.y += 15;
+            if(this.y > (window.innerHeight + 100))
+            {
+                this.x = Math.floor((Math.random() * scene.width));
+                this.y = Math.floor((Math.random() * -200) - 100);
+            }
+        };
+        
+        function Lifers()
+        {
+            this.x = Math.floor((Math.random() * -200) - 100);
+            this.y = Math.floor((Math.random() * scene.height));
+            this.color = "green";
+            this.height = 20;
+            this.width = 20;
+        }
+        
+        Lifers.prototype.draw = function()
+        {
+            ctx.clearRect(this.x, this.y, this.width, this.height);
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        };
+        
+        Lifers.prototype.update = function()
+        {
+            this.x += 5;
+            if(this.x > (scene.width + 10))
+            {
+                this.x = Math.floor((Math.random() * -200) - 100);
+                this.y = Math.floor((Math.random() * scene.height));
+            }
+        };
+
+        function myScore()
+        {
+            ctx.beginPath();
+            ctx.font = "50px Georgia";
+            ctx.fillStyle = "yellow";
+            ctx.fillText("   SCORE : " + score, 100, 100);
+        }
+        
+        function myLives()
+        {
+            ctx.beginPath();
+            ctx.font = "50px Georgia";
+            ctx.fillStyle = "yellow";
+            ctx.fillText("Lives : " + lives, 100, 150);
+        }
+        
+        Player.prototype.draw = function(){
+            ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x,this.y,this.width,this.height);
+        };
+        
+        
+        
+            var myPlayer = new Player();
+            var Harmers = [];
+            for(var i = 0; i < 3; i++)
+            {
+                Harmers.push(new Harmer());
+            }
+            var lifers = new Lifers();
+            
+            var keyState = [];
+            
+            window.addEventListener('keydown', function(e)
+            {
+                keyState[e.keyCode || e.which] = true;
+            });
+            
+            window.addEventListener('keyup', function(e)
+            {
+                keyState[e.keyCode || e.which] = false;
+            });
+            
+            function checkInput ()
+            {
+                if(keyState[38])
+                {
+                    myPlayer.y -= 8;
+                }
+                if(keyState[40])
+                {
+                    myPlayer.y += 8;
+                }
+                if(keyState[37])
+                {
+                    myPlayer.x -= 8;
+                }
+                if(keyState[39])
+                {
+                    myPlayer.x += 8;
+                }
+                
+            }
+            
+            function updateScore()
+            {
+                fps += 1;
+                if (fps % 60 == 0)
+                {
+                    score += 1;
+                }
+            }
+            
+            function main()
+            {
+                
+                
+                  myPlayer.draw();
+                  for(var i = 0; i < 3; i++)
+                  {
+                      Harmers[i].draw();
+                      Harmers[i].update();
+                  }
+                  lifers.draw();
+                  lifers.update();
+                  checkInput();
+                  updateScore();
+                  myScore();
+                  myLives();
+                  
+                  requestAnimationFrame(main);
+            }
+            
+            //
+            function GameOver()
+            {
+                        
+                var scene = document.getElementById("canvas1");
+                var ctx = scene.getContext("2d");
+                scene.width = window.innerWidth;
+                scene.height = window.innerHeight;
+                var c = document.getElementById("canvas1");
+                var ctx = c.getContext("2d");
+                ctx.font = "bold 90px Georgia";
+                ctx.fillStyle = "yellow";
+                ctx.fillText("Game Over",scene.width/2 - scene.width/8 , scene.height/4);
+                ctx.textAlign = "center";
+                
+                requestAnimationFrame(GameOver);
+               
+                
+            }
+            
+            
+            //
+            
+           window.addEventListener('keypress', function(e)
+            {
+                if(e.keyCode == 13)
+                {
+                    main();
+                }
+            });
+            
+            window.addEventListener('keypress', function(e) 
+            {
+                if(e.keyCode == 80 && e.ctrlKey )
+                {
+                    alert("Pause");
+                    document.location.reload();
+                    
+                }
+                                        
+            });
+
+            // 
+                        // This works for a second
+            window.addEventListener('keypress', function(e) 
+            {
+                if(e.keyCode == 27 )
+                {
+                    alert("Game Over");
+                    GameOver();
+                    
+                }
+                                        
+            });
+            window.addEventListener('keypress', function(e) 
+            {
+                if(e.keyCode == 84 && e.ctrlKey )
+                {
+                    
+                    main();
+                    
+                }
+                                        
+            });
+            
+            
+                        
+        </script>
+    </body>
+</html>
