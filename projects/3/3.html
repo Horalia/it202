@@ -51,7 +51,7 @@
             
             
             this.x = 100;
-            this.y = 50;
+            this.y = scene.height/2;
             this.height = 50;
             this.width = 50;
             
@@ -59,8 +59,8 @@
         
         function Harmer()
         {
-            this.x = Math.floor((Math.random() * scene.width));
-            this.y = Math.floor((Math.random() * -200) - 100);
+            this.x = Math.floor((Math.random() * 200) + (scene.width + 100));
+            this.y = Math.floor((Math.random() * scene.height));
             this.color = "red";
             this.height = 50;
             this.width = 50;
@@ -77,11 +77,11 @@
         
         Harmer.prototype.update = function()
         {
-            this.y += 15;
-            if(this.y > (window.innerHeight + 100))
+            this.x -= 15;
+            if(this.x <= -100)
             {
-                this.x = Math.floor((Math.random() * scene.width));
-                this.y = Math.floor((Math.random() * -200) - 100);
+                this.x = Math.floor((Math.random() * 200) + (scene.width + 100));
+                this.y = Math.floor((Math.random() * scene.height));
             }
             if (myPlayer.x < this.x + this.width &&
                 myPlayer.x + myPlayer.width > this.x &&
@@ -102,7 +102,7 @@
         
         function Lifers()
         {
-            this.x = Math.floor((Math.random() * -200) - 100);
+            this.x = Math.floor((Math.random() * 200) + (scene.width + 100));
             this.y = Math.floor((Math.random() * scene.height));
             this.color = "green";
             this.height = 20;
@@ -119,10 +119,10 @@
         
         Lifers.prototype.update = function()
         {
-            this.x += 5;
-            if(this.x > (scene.width + 10))
+            this.x -= 5;
+            if(this.x < -100)
             {
-                this.x = Math.floor((Math.random() * -200) - 100);
+                this.x = Math.floor((Math.random() * 200) + (scene.width + 100));
                 this.y = Math.floor((Math.random() * scene.height));
             }
             if (myPlayer.x < this.x + this.width &&
