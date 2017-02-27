@@ -18,14 +18,11 @@
         var ctx = c.getContext("2d");
         ctx.font = "bold 90px Georgia";
         ctx.fillStyle = "yellow";
-        ctx.fillText("PIGGY DIET",scene.width/2  - scene.width/6 , scene.height/4);
+        ctx.fillText("Welcome",scene.width/2 - scene.width/8 , scene.height/4);
         ctx.textAlign = "center";
         ctx.fillStyle = "orange";
         ctx.fillText("Click ENTER to start game",scene.width/2, scene.height/2);
         ctx.textAlign = "center";
-        
-        
-        
         
         var lives = 3;
         var score = 0;
@@ -161,7 +158,7 @@
             var lifers = new Lifers();
             
             var keyState = [];
-            //
+            
             window.addEventListener('keydown', function(e)
             {
                 keyState[e.keyCode || e.which] = true;
@@ -259,14 +256,13 @@
             
            window.addEventListener('keypress', function(e)
             {
-                if(e.keyCode == 13) //enter to start game
+                if(e.keyCode == 13)
                 {
-                    alert("Piggy Diet will soon begin! To quit game once started click the escape button. To Pause please click 'control P'. The goal of the game is to live as long as possible. Red objets are harmful and will take away 10 points and a life. Green objects are healthy and will give you one life and 5 points. GOOD LUCK  feeding piggy health!");
+                    +                    alert("Piggy Diet will soon begin! To quit game once started click the escape button. To Pause please click 'control P'. The goal of the game is to live as long as possible. Red objets are harmful and will take away 10 points and a life. Green objects are healthy and will give you one life and 5 points. GOOD LUCK  feeding piggy health!");
                     main();
                 }
             });
             
-            //Pausing Game CTR-L P
             window.addEventListener('keypress', function(e) 
             {
                 if(e.keyCode == 80 && e.ctrlKey )
@@ -278,7 +274,7 @@
                                         
             });
 
-            // escape button to quit Game
+            // 
                        
             window.addEventListener('keypress', function(e) 
             {
@@ -291,7 +287,6 @@
                 }
                                         
             });
-            //CTRL T
             window.addEventListener('keypress', function(e) 
             {
                 if(e.keyCode == 84 && e.ctrlKey )
