@@ -1,0 +1,36 @@
+{
+  "name": "Discrete Period Estimator",
+  "short_name": "Period Estimator",
+  "icons": [{
+        "src": "./rose.jpg",
+        "type": "image/jpg",
+        "sizes": "128x128"
+      }, {
+        "src": "rose.jpg",
+        "type": "image/jpg",
+        "sizes": "152x152"
+      }, {
+        "src": "rose.jpg",
+        "type": "image/jpg",
+        "sizes": "144x144"
+      }, {
+        "src": "ose.jpg",
+        "type": "image/jpg",
+        "sizes": "192x192"
+      },
+      {
+        "src": "rose.jpg",
+        "type": "image/png",
+        "sizes": "256x256"
+      },
+      {
+        "src": "rose.jpg",
+        "type": "image/jpg",
+        "sizes": "512x512"
+      }],
+  "start_url": "./project5.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2196F3",
+  "theme_color": "#2196F3"
+}

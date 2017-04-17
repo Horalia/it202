@@ -203,7 +203,7 @@
       function drawTable() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'community area');
-        data.addColumn('number', 'Open');
+        data.addColumn('number', 'zip_code');
 
         for(var i = 0; i < 78; i++)
         {
@@ -226,7 +226,7 @@
         };
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        
 
       
 

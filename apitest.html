@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html>
+
+<head>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="viewport" content="initial-scale=1.0">
+  <title> Condoms in Chicago, IL</title>
+
+        <meta charset="utf-8">
+
+</head>
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript"></script>
+
+
+  
+  <html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    var dictionary = [];
+  
+    var url =  "https://data.cityofchicago.org/resource/jytx-u9zf.json?";
+    url += '?' + $.param({
+      'city_': "Chicago"});
+      
+    $(function() {
+      $.ajax({
+        url: url,
+        method: 'GET',
+        data: {
+          "$limit": 500000
+        }
+      })
+        .done(function(result) {
+        $.each(result, function(index, value) {
+          var key = value["zip_code"];
+          if (!(key in dictionary)) {
+            dictionary[key] = 1;
+          }
+          
+          else {
+            dictionary[key] = dictionary[key] + 1;
+          }
+      google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
+      
+        function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'name');
+        data.addColumn('number', 'venue type');
+        data.addColumn('number', 'zip_code');
+
+        for(var i = 0; i < 78; i++)
+        {
+          if(dictionary[i] == null)
+          {
+            
+          }
+          else
+          {
+            data.addRows([
+             [i.toString(), dictionary[i]]
+            ]);
+          }
+        
+      }
+
+ 
+
+        var options = {
+
+          title: '311: Potholes Reports Open for Community Areas in Chicago, IL'
+
+        };
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+        
+
+      
+
+        chart.draw(data, options);
+
+        table.draw(data, {
+          showRowNumber: false,
+          width: '100%',
+          height: '100%'
+        });
+      }
+    });
+      
+    </script>
+  </head>
+  <body>
+    <div id="table_div"></div>
+  </body>
+</html>
+  
+</script> 
+
+
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwj71GpWEOmsToA4Ipr7DjSuHdK9OXAk&libraries=visualization&callback=initMap"
+
+    async defer></script>
+
+    
+
+    
+</body>
+
+</html>

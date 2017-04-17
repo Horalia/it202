@@ -7,7 +7,6 @@
       <meta name ='apple-mobile-web-app-status-bar-style' content='black'>
       <link rel='icon' sizes=192x192 href=./rose.jpg>
       <link rel=apple-touch-icon href=./rose.jpg>
-      <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <style>
       h1 
       {
@@ -31,6 +30,18 @@
     {
         background: rgb(255,228,225);
     }
+    .material-icons.md-36 { font-size: 66px; }
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
     </style>
     <!-- Material Design Lite -->
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -56,6 +67,7 @@
           <a href="#fixed-tab-1" class="mdl-layout__tab is-active">What is a Menstrual Cycle</a>
           <a href="#fixed-tab-2" class="mdl-layout__tab">Estimate my period</a>
           <a href="#fixed-tab-3" class="mdl-layout__tab">Pregnancy</a>
+          <a id = "search" href="#fixed-tab-4" class="mdl-layout__tab">Nearest Clinics</a>
         </div>
       </header>
       <div class="mdl-layout__drawer">
@@ -75,13 +87,22 @@
       <main class="mdl-layout__content">
         <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
           <div class="page-content" >
-            What's the menstrual cycle?
+            <h1>What's the menstrual cycle?</h1>
             <ul>
 
 The menstrual cycle is the monthly series of changes a woman's body goes through in preparation for the possibility of pregnancy. Each month, one of the ovaries releases an egg — a process called ovulation. At the same time, hormonal changes prepare the uterus for pregnancy. If ovulation takes place and the egg isn't fertilized, the lining of the uterus sheds through the vagina. This is a menstrual period.</div>
         </ul>
+        <div class ="color">
+            <h1>How to keep healthy</h1>
+            <p>Do not worry about losing blood. The body will make up for. If curious, a womens period is about 1/4 cup</p>
+            <p> Women have periods until 40s, 50s but can happen later or earlier, so keep track of bosy changes, get in routine
+            Know what makes you feel comfortable and what doesn't.
+            Ensure keeping clean, showering to protect against infectipn. Change tampons/napkins as necessary.
+            
+            </p>
+        </div>
         <div class = "color">
-          How often does it occur?
+          <h1>How often does it occur?</h1>
           <ul>
           The menstrual cycle, which is counted from the first day of one period to the first day of the next, isn't the same for every woman. Menstrual flow might occur every 21 to 35 days and last two to seven days. For the first few years after menstruation begins, long cycles are common. However, menstrual cycles tend to shorten and become more regular as you age.
 
@@ -93,7 +114,14 @@ When you get close to menopause, your cycle might become irregular again. Howeve
         </ul>
 
         </div>
-        <div class = "color"> Missed Periods
+        <div class = "color"><h1>Important Numbers</h1>
+        <p> 21-35: If your period cycle is around this range, this is considered normal. It is reccommended to get medical advice its not in this range.</p>
+         <p> 14, 14 days from the start of your period is yoiur ovulation date, If trying to conceive this day is the greatest chance. If not trying to conceive, refrain from unprotected sex</p> 
+         <p> 2, 2 days is the max amount of time until you can take PlanB, otherwise it wont work</p>
+         <p>9, 9 months of pregnancy (could be less if complications)</p>
+         <p>8-16, age where a girl can start period</p>
+        </div>
+        <div class = "color"> <h1>Missed Periods</h1>
         <ul>
           <li>Pregnancy or breast-feeding. A missed period can be an early sign of pregnancy. Breast-feeding typically delays the return of menstruation after pregnancy.
 </li>
@@ -157,10 +185,6 @@ Uterine fibroids. Uterine fibroids are noncancerous growths of the uterus. They 
   </div>
 </div>
     
-    
-    
-  </body>
-</html>
         </section>
         <div class = "row">
           <div class = "col-md-12 text-center">
@@ -169,21 +193,33 @@ Uterine fibroids. Uterine fibroids are noncancerous growths of the uterus. They 
              <h1>If Pregnant: </h1>
             <br></br>
               <div>
-              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/health-center ">Health Centers PP</a>
+                  
+              </div>
+              <div>
+              <a class="mdl-button md-36 mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/health-center ">Health Centers PP</a>
               <br></br>
-              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/learn/morning-after-pill-emergency-contraception">Morning After Pill</a>
+              <a class="mdl-button md-36 mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/learn/morning-after-pill-emergency-contraception">Morning After Pill</a>
               <br></br>
-              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org ">Planned PARENTHOOD</a>
+              <a class="mdl-button md-36 mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org ">Planned PARENTHOOD</a>
               <br></br>
-              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/learn/abortion ">Information on Abortion </a>
+              <a class="mdl-button md-36 mdl-js-button mdl-button--raised mdl-button--accent" href="https://www.plannedparenthood.org/learn/abortion ">Information on Abortion </a>
               <br></br>
-              <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="http://www.birthcontrol.com/ ">Birth Control Methods</a>
+              <a class="mdl-button  md-36 mdl-js-button mdl-button--raised mdl-button--accent" href="http://www.birthcontrol.com/ ">Birth Control Methods</a>
               </div>
              
             </div>
         </section>
         </div>
         </div>
+        
+         <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+             <div class = "row">
+                 <div class = "col-md-12">
+                  <div id ="loading" width = "100px" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+                  <div id = "map"></div>
+                 </div>
+             </div>
+        </section>
       </main>
     </div>
    <script>
@@ -193,6 +229,73 @@ Uterine fibroids. Uterine fibroids are noncancerous growths of the uterus. They 
      periodEstimator();
    });
    
+   $("#search").click(function()
+   {
+       searchPlaces();
+   });
+ 
+ function searchPlaces()
+ {
+     if (navigator.geolocation)
+     {
+         navigator.geolocation.getCurrentPosition(showPosition);
+     }
+     else
+     {
+         console.log("Could not get location");
+     }
+ }
+ 
+ function showPosition(position){
+     console.log(position.coords.latitude, position.coords.longitude);
+     
+    var user = {lat: position.coords.latitude, lng: position.coords.longitude};
+        $("#loading").hide();
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: user,
+          zoom: 19
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: user,
+          radius: 500,
+          type: ['doctor'],
+          keyword: 'health'
+        }, callback);
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+    }
+    
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          createMarker(results[i]);
+        }
+      }
+    }
+ }
+ 
      function periodEstimator()
      {
      var month= document.getElementById('sample1').value;
@@ -353,7 +456,7 @@ Uterine fibroids. Uterine fibroids are noncancerous growths of the uterus. They 
 
      }
    </script>
-   <script>
+    <script>
        if('serviceWorker' in navigator)
        {
            console.log("Will the service worker register?");
@@ -366,6 +469,9 @@ Uterine fibroids. Uterine fibroids are noncancerous growths of the uterus. They 
             });
        }
    </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYwj71GpWEOmsToA4Ipr7DjSuHdK9OXAk&libraries=places"
+
+    async defer></script>
   </body>
   
 
